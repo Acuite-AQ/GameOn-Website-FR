@@ -1,9 +1,9 @@
 function editNav() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
+  const responsiveNav = document.getElementById("myTopnav");
+  if (responsiveNav.className === "topnav") {
+    responsiveNav.className += " responsive";
   } else {
-    x.className = "topnav";
+    responsiveNav.className = "topnav";
   }
 }
 
@@ -24,18 +24,18 @@ function closeModal() {
 
 // regex
 regexMail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-regexDate = /^(?:0[1-9]|[12]\d|3[01])([\/.-])(?:0[1-9]|1[012])\1(?:19|20)\d\d$/;
-regexBirthdate = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
-regexNumber = "([0-9])"
+regexDate = /^(?:0[1-9]|[12]\d|3[01])([\/.-])(?:0[1-9]|1[012])\1(?:19|20)\d\d$/i;
+regexBirthdate = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/i;
+regexNumber = "([0-9])";
 
 // 3.0 ERROR MESSAGE
-const firstNameErrMsg = "Le prénom doit être composé d'au moins 2 caractères"
-const lastNameErrMsg = "Le nom doit être composé d'au moins 2 caractères"
-const emailErrMsg = "L'email n'est pas valide"
-const birthdateErrMsg = "La date de naissance n'est pas valide"
-const tournamentsErrMsg = "Veuillez inscrire un chiffre"
-const locationErrMsg = "Veuillez sélectionner au moins un lieu"
-const CGUErrorMsg = "Vous devez accepter les CGU"
+const firstNameErrMsg = "Le prénom doit être composé d'au moins 2 caractères";
+const lastNameErrMsg = "Le nom doit être composé d'au moins 2 caractères";
+const emailErrMsg = "L'email n'est pas valide";
+const birthdateErrMsg = "La date de naissance n'est pas valide";
+const tournamentsErrMsg = "Veuillez inscrire un chiffre";
+const locationErrMsg = "Veuillez sélectionner au moins un lieu";
+const cguErrorMsg = "Vous devez accepter les CGU";
 
 // launch modal form
 function launchModal() {
@@ -43,44 +43,44 @@ function launchModal() {
   // document.querySelector('#btn-submit').disabled = true;
 
   // 2.1 FIRST NAME
-  const firstInput = document.getElementById("first");
-  let isFirstValid = false;
-  firstInput.addEventListener('input', firstKeyPress)
+  const firstNameInput = document.getElementById("first");
+  let isFirstNameValid = false;
+  firstNameInput.addEventListener('input', firstNameKeyPress);
 
-  function firstKeyPress(event) {
-    let firstNameError = document.getElementById("firstNameError")
+  function firstNameKeyPress(event) {
+    let firstNameError = document.getElementById("firstNameError");
     if (event.target.value.length >= 2) {
       firstNameError.innerHTML = "";
-      isFirstValid = true;
+      isFirstNameValid = true;
     } else {
       firstNameError.innerHTML = firstNameErrMsg;
-      isFirstValid = false;
+      isFirstNameValid = false;
     }
   }
 
   // 2.2 LAST NAME
-  const lastInput = document.getElementById("last");
-  let isLastValid = false;
-  lastInput.addEventListener('input', lastKeyPress)
+  const lastNameInput = document.getElementById("last");
+  let isLastNameValid = false;
+  lastNameInput.addEventListener('input', lastNameKeyPress);
 
-  function lastKeyPress(event) {
-    let lastNameError = document.getElementById("lastNameError")
+  function lastNameKeyPress(event) {
+    let lastNameError = document.getElementById("lastNameError");
     if (event.target.value.length >= 2) {
       lastNameError.innerHTML = "";
-      isLastValid = true;
+      isLastNameValid = true;
     } else {
       lastNameError.innerHTML = lastNameErrMsg;
-      isLastValid = false;
+      isLastNameValid = false;
     }
   }
 
   // 2.3 E-MAIL
   const mailInput = document.getElementById("email");
   let isMailValid = false;
-  mailInput.addEventListener('keyup', mailKeyPress)
+  mailInput.addEventListener('keyup', mailKeyPress);
 
   function mailKeyPress(event) {
-    let mailNameError = document.getElementById("mailNameError")
+    let mailNameError = document.getElementById("mailNameError");
     if (event.target.value.match(regexMail)) {
       mailNameError.innerHTML = "";
       isMailValid = true;
@@ -93,11 +93,10 @@ function launchModal() {
   // 2.4 DATE
   const birthdateInput = document.getElementById("birthdate");
   let isBirthdateValid = false;
-  birthdateInput.addEventListener('input', birthdateKeyPress)
+  birthdateInput.addEventListener('input', birthdateKeyPress);
 
   function birthdateKeyPress(event) {
     let birthdateError = document.getElementById("birthdateError")
-    console.log(regexDate)
     if (event.target.value.match(regexBirthdate)) {
       birthdateError.innerHTML = "";
       isBirthdateValid = true;
@@ -108,12 +107,12 @@ function launchModal() {
   }
 
   // 2.5 TOURNAMENTS
-  const tournamentsInput = document.getElementById("quantity");
+  const tournamentsQtyInput = document.getElementById("quantity");
   let isTournamentsValid = false;
-  tournamentsInput.addEventListener('input', tournamentsKeyPress)
+  tournamentsQtyInput.addEventListener('input', tournamentsKeyPress);
 
   function tournamentsKeyPress(event) {
-    let tournamentsError = document.getElementById("tournamentsError")
+    let tournamentsError = document.getElementById("tournamentsError");
     if (event.target.value.match(regexNumber)) {
       tournamentsError.innerHTML = "";
       isTournamentsValid = true;
@@ -124,35 +123,36 @@ function launchModal() {
   }
 
   // 2.6 RADIO BUTTONS
-  document.querySelector('input[name="location"]:checked').value;
+  // document.querySelector('input[name="location"]:checked').value;
 
-  // 2.7 CGU
-  const cguChecked = document.getElementById('checkbox1')
-  let iscguValid = false;
-  cguChecked.addEventListener('click', cguCheck)
+  // 2.7 CGU //Nommage checkbox1
+  const cguChecked = document.getElementById('checkbox1');
+  let isCguValid = false;
+  cguChecked.addEventListener('click', cguCheckBox);
 
-  function cguCheck(event) {
+  function cguCheckBox(event) {
     let cguError = document.getElementById("cguError");
     if (event.target.checked == true) {
       cguError.innerHTML = "";
-      iscguValid = true;
+      isCguValid = true;
     } else {
-      cguError.innerHTML = CGUErrorMsg;
-      iscguValid = false;
+      cguError.innerHTML = cguErrorMsg;
+      isCguValid = false;
     }
   }
 
   // 2.8 FINAL SUBMIT
-  const ValidateForm = document.getElementById("btn-submit")
-  ValidateForm.addEventListener('click', ValidationForm)
+  const validateForm = document.getElementById("btn-submit");
+  validateForm.addEventListener('click', validationForm);
 
-  function ValidationForm(event) {
-    if (isFirstValid, isLastValid, isMailValid, isBirthdateValid, isTournamentsValid, iscguValid == true) {
+  function validationForm(event) {
+    const isFormValid = isFirstNameValid && isLastNameValid && isMailValid  && isTournamentsValid && isCguValid
+    if (isFormValid) {
       // 4 SUBMIT ANSWER
-      alert("Merci ! Votre réservation a été reçue.")
+      alert("Merci ! Votre réservation a été reçue.");
     } else {
       event.preventDefault();
-      alert("Validation non conforme.")
+      alert("Validation non conforme.");
     }
   }
 }
