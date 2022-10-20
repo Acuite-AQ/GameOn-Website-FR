@@ -1,14 +1,14 @@
 function editNav() {
-  const responsiveNav = document.getElementById("myTopnav");
-  if (responsiveNav.className === "topnav") {
+  const responsiveNav = document.getElementById("idNav");
+  if (responsiveNav.className === "nav") {
     responsiveNav.className += " responsive";
   } else {
-    responsiveNav.className = "topnav";
+    responsiveNav.className = "nav";
   }
 }
 
 // DOM Elements
-const modalbg = document.querySelector(".bground");
+const modalBg = document.querySelector(".background");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const modalClose = document.querySelectorAll(".close");
 const formData = document.querySelectorAll(".formData");
@@ -19,28 +19,27 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 modalClose.forEach((btn) => btn.addEventListener("click", closeModal));
 // close modal form
 function closeModal() {
-  modalbg.style.display = "none";
+  modalBg.style.display = "none";
 }
 
 // regex
 regexMail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-regexDate = /^(?:0[1-9]|[12]\d|3[01])([\/.-])(?:0[1-9]|1[012])\1(?:19|20)\d\d$/i;
-regexBirthdate = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/i;
 regexNumber = "([0-9])";
+regexBirthdate=/^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/i;
+
 
 // 3.0 ERROR MESSAGE
-const firstNameErrMsg = "Le prénom doit être composé d'au moins 2 caractères";
-const lastNameErrMsg = "Le nom doit être composé d'au moins 2 caractères";
-const emailErrMsg = "L'email n'est pas valide";
-const birthdateErrMsg = "La date de naissance n'est pas valide";
-const tournamentsErrMsg = "Veuillez inscrire un chiffre";
-const locationErrMsg = "Veuillez sélectionner au moins un lieu";
-const cguErrorMsg = "Vous devez accepter les CGU";
+const firstNameErrMsg = "Veuillez entrer 2 caractères ou plus pour le champ du prénom.";
+const lastNameErrMsg = "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
+const emailErrMsg = "Veuillez saisir un email valide.";
+const birthdateErrMsg = "Vous devez entrer votre date de naissance.";
+const tournamentsErrMsg = "Veuillez saisir un chiffre.";
+const locationErrMsg = "Vous devez choisir une option.";
+const cguErrorMsg = "Vous devez vérifier que vous acceptez les termes et conditions.";
 
 // launch modal form
 function launchModal() {
-  modalbg.style.display = "block";
-  // document.querySelector('#btn-submit').disabled = true;
+  modalBg.style.display = "block";
 
   // 2.1 FIRST NAME
   const firstNameInput = document.getElementById("first");
@@ -77,7 +76,7 @@ function launchModal() {
   // 2.3 E-MAIL
   const mailInput = document.getElementById("email");
   let isMailValid = false;
-  mailInput.addEventListener('keyup', mailKeyPress);
+  mailInput.addEventListener('input', mailKeyPress);
 
   function mailKeyPress(event) {
     let mailNameError = document.getElementById("mailNameError");
