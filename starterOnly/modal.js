@@ -40,6 +40,7 @@ const cguErrorMsg = "Vous devez vérifier que vous acceptez les termes et condit
 // launch modal form
 function launchModal() {
   modalBg.style.display = "block";
+}
 
   // 2.1 FIRST NAME
   const firstNameInput = document.getElementById("first");
@@ -145,7 +146,7 @@ function launchModal() {
   validateForm.addEventListener('click', validationForm);
 
   function validationForm(event) {
-    const isFormValid = isFirstNameValid && isLastNameValid && isMailValid  && isTournamentsValid && isCguValid
+    const isFormValid = isFirstNameValid && isLastNameValid && isMailValid && isBirthdateValid && isTournamentsValid && isCguValid
     if (isFormValid) {
       // 4 SUBMIT ANSWER
       alert("Merci ! Votre réservation a été reçue.");
@@ -154,4 +155,3 @@ function launchModal() {
       alert("Validation non conforme.");
     }
   }
-}
