@@ -8,8 +8,10 @@ function editNav() {
 }
 
 // DOM Elements
+const modalSubmitted = document.querySelector(".submitted");
 const modalBg = document.querySelector(".background");
 const modalBtn = document.querySelectorAll(".modal-btn");
+const modalBtnClose = document.querySelectorAll(".btn-close");
 const modalClose = document.querySelectorAll(".close");
 const formData = document.querySelectorAll(".formData");
 
@@ -17,6 +19,7 @@ const formData = document.querySelectorAll(".formData");
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // close modal event
 modalClose.forEach((btn) => btn.addEventListener("click", closeModal));
+modalBtnClose.forEach((btn) => btn.addEventListener("click", closeModal));
 // close modal form
 function closeModal() {
   modalBg.style.display = "none";
@@ -40,6 +43,12 @@ const cguErrorMsg = "Vous devez vérifier que vous acceptez les termes et condit
 // launch modal form
 function launchModal() {
   modalBg.style.display = "block";
+}
+
+function successSubmit() {
+  const finalSubmit = document.getElementById("modal-body-success");
+    finalSubmit.className += "-success";
+    modalSubmitted.style.display = "block";
 }
 
   // 2.1 FIRST NAME
@@ -96,7 +105,7 @@ function launchModal() {
   birthdateInput.addEventListener('input', birthdateKeyPress);
 
   function birthdateKeyPress(event) {
-    let birthdateError = document.getElementById("birthdateError")
+    let birthdateError = document.getElementById("birthdateError");
     if (event.target.value.match(regexBirthdate)) {
       birthdateError.innerHTML = "";
       isBirthdateValid = true;
@@ -125,7 +134,7 @@ function launchModal() {
   // 2.6 RADIO BUTTONS
   // document.querySelector('input[name="location"]:checked').value;
 
-  // 2.7 CGU //Nommage checkbox1
+  // 2.7 CGU
   const cguChecked = document.getElementById('checkbox1');
   let isCguValid = false;
   cguChecked.addEventListener('click', cguCheckBox);
@@ -148,10 +157,14 @@ function launchModal() {
   function validationForm(event) {
     const isFormValid = isFirstNameValid && isLastNameValid && isMailValid && isBirthdateValid && isTournamentsValid && isCguValid
     if (isFormValid) {
-      // 4 SUBMIT ANSWER
-      alert("Merci ! Votre réservation a été reçue.");
+      // 4 SUBMIT ANSWER SI FORMULAIRE VALIDE
+      event.preventDefault()
+      successSubmit()
+      // launchSubmit()
     } else {
-      event.preventDefault();
+      // SI FORMULAIRE INVALIDE
+      event.preventDefault()
       alert("Validation non conforme.");
     }
   }
+

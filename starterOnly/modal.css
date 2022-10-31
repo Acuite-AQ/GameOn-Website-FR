@@ -43,6 +43,7 @@ img {
 
 .main-navbar {
   float: right;
+  margin-top:5px;
 }
 
 .nav a {
@@ -71,6 +72,10 @@ img {
 
 .nav .icon {
   display: none;
+}
+
+.fa-bars {
+  color:red;
 }
 
 @media screen and (max-width: 768px) {
@@ -127,7 +132,6 @@ main {
   border-radius: 2rem;
   text-align: justify;
 
-
 }
 
 .modal-btn {
@@ -176,7 +180,8 @@ main {
   display: none;
   position: fixed;
   z-index: 1;
-  left: 0;
+  left: 2px;
+  right:0px;
   top: 0;
   height: 100%;
   width: 100%;
@@ -185,7 +190,7 @@ main {
 }
 
 .content {
-  margin: 5% auto;
+  margin: 15% auto 0% auto;
   width: 100%;
   max-width: 500px;
   -webkit-animation-name: modalopen;
@@ -203,6 +208,19 @@ main {
 .modal-body {
   padding: 15px 8%;
   margin: 15px auto;
+}
+
+.modal-body-success {
+  display:none;
+}
+
+.answer-submit {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  height: 622px;
+  width: 420px;
+  line-height: 622px;
 }
 
 label {
@@ -357,7 +375,8 @@ input[data-error]::after {
 }
 
 .btn-submit,
-.btn-signup {
+.btn-signup,
+.btn-close {
   background: #fe142f;
   display: block;
   margin: 0 auto;
@@ -374,6 +393,10 @@ input[data-error]::after {
   border: 1px solid #999999;
   background-color: #cccccc;
   cursor: not-allowed;
+}
+
+.btn-close {
+  margin-bottom: 20px;
 }
 
 /* custom select styles */
@@ -530,6 +553,10 @@ input[data-error]::after {
   display: none;
 }
 
+.submitted {
+  display: none;
+}
+
 footer {
   padding-left: 2vw;
   padding-right: 2vw;
@@ -537,9 +564,20 @@ footer {
 }
 
 @media screen and (max-width: 800px) {
+
+  .header-logo>img {
+    height:25px;
+    width: 150px;
+  }
+
   .hero-section {
     display: block;
     box-shadow: unset;
+    min-height: 0px;
+  }
+
+main {
+    margin-bottom:0px;
   }
 
   .hero-content {
@@ -547,41 +585,51 @@ footer {
     color: #000;
     padding: 0px;
     min-width: 0px;
-    text-align: center;
+    /* text-align: center; */
   }
 
   .hero-content::after {
     content: unset;
   }
 
+
   .hero-content .btn-signup {
     display: none;
   }
 
   .hero-headline {
-    font-size: 4.5rem;
+    font-size: 40px;
     white-space: normal;
+    font-weight: 600;
   }
 
   .hero-text {
     width: unset;
-    font-size: 1.5rem;
+    font-size: 13px;
+    margin-top:20px;
   }
 
   .hero-img img {
     border-radius: 10px;
-    margin-top: 40px;
+    margin-top: 30px;
   }
 
   .hero-section>.btn-signup {
     display: block;
     margin: 32px auto 10px;
-    padding: 12px 35px;
+  }
+
+  .btn-signup {
+    font-size: 16px;
+    padding:0px;
+    height: 31px;
+    width: 141px;
   }
 
   .copyrights {
-    margin-top: 50px;
+    margin-top: 0px;
     text-align: center;
+    font-size: 10px;
   }
 }
 

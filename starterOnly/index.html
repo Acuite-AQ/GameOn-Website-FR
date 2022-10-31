@@ -53,7 +53,7 @@
     <div class="background">
       <div class="content">
         <span class="close"></span>
-        <div class="modal-body">
+        <div class="modal-body" id="modal-body-success">
           <form id="form" name="reserve" action="index.html" method="get" onsubmit="return validate();">
             <div class="formData">
               <label for="firstName">Prénom</label><br>
@@ -126,6 +126,10 @@
             </div>
             <input class="btn-submit" id="btn-submit" type="submit" class="button" value="C'est parti" />
           </form>
+        </div>
+        <div class="submitted">
+          <p class="answer-submit"> Merci pour votre inscription </p>
+          <input class="btn-close" id="btn-close" type="submit" class="button" value="Fermer" />
         </div>
       </div>
     </div>
